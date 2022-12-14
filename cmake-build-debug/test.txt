@@ -1,0 +1,8 @@
+not -> nand(#0, 1)
+and -> not(nand(#0, #1))
+divisors -> concat([2],list(3, 2,add(1, int(sqrt(#0)))))
+containsDevisors -> if(length(#0),if(eq(#1, head(#0)), containsDevisors(tail(#0), #1), if(mod(#1,head(#0)), containsDevisors(tail(#0), #1), 1)),0)
+isPrime -> not(containsDevisors(divisors(#0), #0))
+filterPrimes -> if(length(#0), if(isPrime(head(#0)),concat([head(#0)], filterPrimes(tail(#0))),filterPrimes(tail(#0))), [])
+primes10 -> filterPrimes(concat([2], list(3, 1, 7)))
+allPrimes -> filterPrimes(concat([2], list(3)))
